@@ -1,5 +1,6 @@
 package com.TeaTech.co.TeaTech.Model;
 
+import java.util.Optional;
 import java.util.Set;
 
 import jakarta.persistence.CascadeType;
@@ -23,13 +24,12 @@ public class UserAuth {
 
     private @Id
     @GeneratedValue Long id;
-    String userName;
+    String username;
     String email;
     String password;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinTable(name = "user_role",
-        joinColumns = @JoinColumn(name ="user_id", referencedColumnName = "id"),
+    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name ="user_id", referencedColumnName = "id"),
         inverseJoinColumns = @JoinColumn( name = "role_id", referencedColumnName = "id"))
 
     private Set<Role> roles;
@@ -37,14 +37,14 @@ public class UserAuth {
 
     UserAuth(){}
 
-    public UserAuth(String userName, String email, String password) {
-        this.userName = userName;
+    public UserAuth(String username, String email, String password) {
+        this.username = username;
         this.email = email;
         this.password = password;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public void setEmail(String email) {
@@ -63,8 +63,8 @@ public class UserAuth {
         return id;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
     public String getEmail() {
