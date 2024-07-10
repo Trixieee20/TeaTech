@@ -94,7 +94,7 @@ public class AuthController {
         try{
             Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
-                    loginRequest.getUsernameorEmail(),
+                    loginRequest.getUsernameOrEmail(),
                     loginRequest.getPassword()
                 )
             );
@@ -102,7 +102,7 @@ public class AuthController {
             SecurityContextHolder.getContext().setAuthentication(authentication);
             return new ResponseEntity<>("User logged in successfully", HttpStatus.OK);
         }catch(Exception e){
-            return new ResponseEntity<>("Invalid username or password", HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<>(e.toString(), HttpStatus.UNAUTHORIZED);
         }
     }
 }

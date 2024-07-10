@@ -30,19 +30,19 @@ public class UserController {
         return repo.findAll();
     }
 
-    @GetMapping("/user/{id}")
+    @GetMapping("/{id}")
     public User getUser(@PathVariable Long id){
         return repo.findById(id)
         .orElseThrow(()-> new UserNotFoundException(id));
     }
 
-    @PostMapping("/user/new")
+    @PostMapping("/new")
     public String addUser(@RequestBody User newUser){
         repo.save(newUser);
         return "Your account was added.";
     }
 
-    @PutMapping("/user/edit/{id}")
+    @PutMapping("/edit/{id}")
     public User updateUser(@PathVariable Long id, @RequestBody User newUser){
         return repo.findById(id)
         .map(user ->{
@@ -57,7 +57,7 @@ public class UserController {
         
     }
 
-    @DeleteMapping("/user/delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public String deleteUser(@PathVariable Long id){
         repo.deleteById(id);
         return "A user is deleted!";

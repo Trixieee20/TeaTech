@@ -29,19 +29,19 @@ public class OrderItemController {
         return repo.findAll();
     }
 
-    @GetMapping("/orderitem/{id}")
+    @GetMapping("/{id}")
     public OrderItem getOrderItemById(@PathVariable Long id){
         return repo.findById(id)
         .orElseThrow(()-> new OrderItemNotFoundException(id));
     }
 
-    @PostMapping("/orderitem/new")
+    @PostMapping("/new")
     public String assOrderItem(@RequestBody OrderItem newOrderItem){
         repo.save(newOrderItem);
         return "A new order item is added";
     }
 
-    @DeleteMapping("/orderitem/delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public String deleteOrderItem(@PathVariable Long id){
         repo.deleteById(id);
         return "A order item is deleted";

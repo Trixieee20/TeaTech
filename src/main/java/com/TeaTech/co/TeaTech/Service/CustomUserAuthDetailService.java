@@ -22,7 +22,8 @@ public class CustomUserAuthDetailService implements UserDetailsService{
         this.userAuthRepository = userAuthRepository;
     }
 
-    public UserDetails loadUserByUserName(String usernameorEmail) throws UsernameNotFoundException{
+    @Override
+    public UserDetails loadUserByUsername(String usernameorEmail) throws UsernameNotFoundException{
         UserAuth userAuth = userAuthRepository.findByUsernameOrEmail(usernameorEmail, usernameorEmail)
             .orElseThrow(()->
             new UsernameNotFoundException("User not found with username or email" + usernameorEmail));
@@ -39,11 +40,6 @@ public class CustomUserAuthDetailService implements UserDetailsService{
         );
     }
 
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'loadUserByUsername'");
-    }
 
 }
 

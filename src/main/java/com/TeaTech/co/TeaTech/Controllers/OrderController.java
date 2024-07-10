@@ -30,20 +30,20 @@ public class OrderController {
         return repo.findAll();
     }
 
-    @GetMapping("/order/{id}")
+    @GetMapping("/{id}")
     public Order getOrderById(@PathVariable Long id){
         return repo.findById(id)
         .orElseThrow(()-> new OrderNotFoundException(id));
     }
 
-    @PostMapping("/order/new")
+    @PostMapping("/new")
     public String addOrder(@RequestBody Order newOrder){
         repo.save(newOrder);
         return "A new order is added.";
     }
 
 
-    @DeleteMapping("/order/delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public String deleteOrder(@PathVariable Long id){
         repo.deleteById(id);
         return "A order is deleted!";
