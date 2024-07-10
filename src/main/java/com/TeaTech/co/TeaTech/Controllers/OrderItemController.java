@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.TeaTech.co.TeaTech.Model.OrderItem;
@@ -14,6 +15,7 @@ import com.TeaTech.co.TeaTech.NotFoundException.OrderItemNotFoundException;
 import com.TeaTech.co.TeaTech.Repository.OrderItemRepository;
 
 @RestController
+@RequestMapping("api/v1/OrderItem")
 public class OrderItemController {
 
     OrderItemRepository repo;
@@ -22,7 +24,7 @@ public class OrderItemController {
         this.repo = repo;
     } 
 
-    @GetMapping("/orderitem")
+    @GetMapping("/all")
     public List<OrderItem> getOrderItem(){
         return repo.findAll();
     }

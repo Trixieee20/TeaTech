@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.TeaTech.co.TeaTech.Model.User;
@@ -15,6 +16,7 @@ import com.TeaTech.co.TeaTech.NotFoundException.UserNotFoundException;
 import com.TeaTech.co.TeaTech.Repository.UserRepository;
 
 @RestController
+@RequestMapping("/api/v1/User")
 public class UserController {
 
     UserRepository repo;
@@ -23,7 +25,7 @@ public class UserController {
         this.repo = repo;
     }
 
-    @GetMapping("/user")
+    @GetMapping("/all")
     public List<User> getUser(){
         return repo.findAll();
     }
